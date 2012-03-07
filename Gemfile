@@ -41,6 +41,7 @@ group 'test' do
   gem 'colorific',         '~> 1.0.0'
   gem 'test_notifier',     '~> 1.0.0'
   gem 'mocha'
+  gem 'database_cleaner'
 end
 
 group :development do
