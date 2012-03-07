@@ -29,6 +29,13 @@ class ArticleDecorator < ApplicationDecorator
     RestClient.post("http://is.gd/create.php", :format => "simple", :url => url)
   end
 
+  def mark_as_read_link
+    h.link_to "Mark as read", h.read_article_path(article), 
+      :class => 'mark-as-read',
+      :method => :post,
+      :remote => true unless article.read_by?(h.current_user)
+  end
+
   def css
     css_classes = []
 

@@ -8,13 +8,17 @@ Community::Application.routes.draw do
   match '/read_all/:type' => 'people#read_all', as: 'read_all'
 
   resources :people
-  resources :articles
+  resources :articles do
+    post :read, :on => :member
+  end
+
   resources :activities do
     member do
       post :register
       post :archive
       post :restore
       post :create_discussion_list
+      post :read
     end
     collection do
       get :archived

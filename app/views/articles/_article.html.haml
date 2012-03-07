@@ -1,6 +1,7 @@
 = content_tag_for :article, article, class: article.css do
   .article_title
     - if @articles
+      %span.mark-as-read= article.mark_as_read_link
       = link_to article.title, article_path(article)
     - else
       = article.title

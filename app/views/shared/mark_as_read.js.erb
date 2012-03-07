@@ -1,0 +1,7 @@
+var unreadCount = $('.unread_count[data-type=<%= params[:controller] %>]');
+unreadCount.text(parseInt(unreadCount.text()) - 1);
+if( unreadCount.text() === '0' ) {
+  unreadCount.remove();
+}
+
+$('#<%= dom_id(@resource) %> .mark-as-read').remove();

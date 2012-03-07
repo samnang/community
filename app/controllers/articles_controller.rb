@@ -1,9 +1,9 @@
 class ArticlesController < ApplicationController
   respond_to :html
 
-  before_filter :user_required,         :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :find_article,          :only => [:show, :edit, :update, :destroy]
-  before_filter :mark_as_read,          :only => [:show]
+  before_filter :user_required,         :only => [:new, :create, :edit, :update, :destroy, :read]
+  before_filter :find_article,          :only => [:show, :edit, :update, :destroy, :read]
+  before_filter :mark_as_read,          :only => [:show, :read]
   before_filter :authorized_users_only, :only => [:edit, :update, :destroy]
   before_filter :profile_required,      :only => [:new, :create]
 
@@ -55,6 +55,11 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to(articles_path, :notice => 'Article was successfully destroyed.')
+  end
+
+  def read
+    @resource = @article
+    render "shared/mark_as_read"
   end
 
   private

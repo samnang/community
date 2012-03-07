@@ -69,6 +69,13 @@ class ActivityDecorator < ApplicationDecorator
     h.content_tag(:div, link || "", :class => "participants").html_safe
   end
 
+  def mark_as_read_link
+    h.link_to "Mark as read", h.read_activity_path(activity), 
+      :class => 'mark-as-read',
+      :method => :post,
+      :remote => true unless activity.read_by?(h.current_user)
+  end
+
   def css_class
     css_class = []
     css_class << 'unread' unless activity.read_by?(h.current_user)

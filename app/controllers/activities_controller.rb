@@ -2,8 +2,8 @@ class ActivitiesController < ApplicationController
   before_filter :user_required
   before_filter :find_activity, :only => [ :show, :edit, :update, :destroy,
                                            :register, :archive, :restore,
-                                           :create_discussion_list ]
-  before_filter :mark_as_read,  :only => [ :show ]
+                                           :create_discussion_list, :read ]
+  before_filter :mark_as_read,  :only => [ :show, :read ]
   before_filter :authorized_users_only, :only => [ :edit, :update, :destroy,
                                                    :archive, :restore,
                                                    :create_discussion_list ]
@@ -26,7 +26,6 @@ class ActivitiesController < ApplicationController
     @participants = UserDecorator.decorate(participants)
     @user         = UserDecorator.decorate(current_user)
   end
-
 
   def new
     @activity = Activity.new(:registration_open => true)
@@ -94,6 +93,11 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def read
+    @resource = @activity
+    render "shared/mark_as_read"
   end
 
   private
