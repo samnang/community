@@ -70,9 +70,11 @@ class ActivityDecorator < ApplicationDecorator
   end
 
   def mark_as_read_link
-    h.link_to "Mark as read", h.read_activity_path(activity), 
-      :class => 'mark-as-read',
+    h.link_to "Mark as read", h.read_activity_path(activity),
       :method => :post,
+      :class => 'mark-as-read',
+      :rel => 'twipsy',
+      :title => "Mark as read",
       :remote => true unless activity.read_by?(h.current_user)
   end
 

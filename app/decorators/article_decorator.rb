@@ -31,8 +31,10 @@ class ArticleDecorator < ApplicationDecorator
 
   def mark_as_read_link
     h.link_to "Mark as read", h.read_article_path(article), 
-      :class => 'mark-as-read',
       :method => :post,
+      :class => 'mark-as-read',
+      :rel => 'twipsy',
+      :title => "Mark as read",
       :remote => true unless article.read_by?(h.current_user)
   end
 

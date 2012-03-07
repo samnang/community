@@ -1,7 +1,7 @@
 = content_tag_for(:div, activity, :class => activity.css_class) do
   .activity_title
     - if @activities
-      .mark-as-read= activity.mark_as_read_link
+      = activity.mark_as_read_link
       = link_to activity.title, activity_path(activity)
     - else
       = activity.title
