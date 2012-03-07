@@ -2,6 +2,7 @@ article
   +container
   div.article_title
     +column(20)
+    +mark-as-read
     font-size: 1.5em
     font-family: $display-font
     margin-bottom: 1em
@@ -44,8 +45,6 @@ article
   &.private .article_title
     padding-left: 30px
     background: asset-url('icons/butterfly.png', image) 0 0 no-repeat
-  &.unread .article_title
-    font-weight: bold
 
 #articles article.highlight
   border: 1px dashed #AE9331

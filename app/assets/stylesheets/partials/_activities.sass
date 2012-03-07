@@ -1,9 +1,8 @@
 div.activity
   +container
-  &.unread div.activity_title
-    font-weight: bold
   div.activity_title
     +column(20, true)
+    +mark-as-read
     font-size: 1.5em
     font-family: $display-font
     margin-bottom: 1em
